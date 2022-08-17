@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,12 +9,17 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "info")
-public class Info {
+public class Info implements Serializable {
 	
+	public Info(int id, String name) {
+		super();
+		Id = id;
+		this.name = name;
+	}
 	@Id
 	@Column(name = "ID")
 	@JsonProperty("Id")
-	private int Id;
+	private transient int Id;
 	@Column(name = "NAME")
 	private String name;
 	public int getId() {
