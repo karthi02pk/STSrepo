@@ -8,12 +8,25 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
+import java.util.Spliterator;
+import java.util.StringJoiner;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -86,7 +99,7 @@ public void Streamfunc() {
 	  Map<Object, Object>i=infolist.stream().collect(Collectors.toMap(e->e.getId(),(e)->e.getName()));
 	  List k=infolist.stream().filter((e)->e.getId()>3).map((e)->e.getId()+"-"+e.getName()).collect(Collectors.toList());
 	  Integer j=infolist.stream().filter((e)->e.getId()>1).map((e)->e.getId()).collect(Collectors.summingInt((e)->e));
-	  
+	 
 	  
 	  Arrays.parallelSort(strarr);
 	  for (char i1 : strarr) {
@@ -128,18 +141,120 @@ public void funcInterfaces() {
 	 
 }
 
+public static int factorial(int x) {
+	
+	if(x==1)
+		return 1;
+	else
+		return x*factorial(x-1);
+}
+
+public static void fibonacci(int x) {
+	int a=0; int b=1; int c;
+	System.out.print(a+" "+b+" ");
+	for(int i=2;i<=x;i++) {
+		c=a+b;
+		System.out.print(c+" ");
+		a=b;
+		b=c;
+	}
+}
+static int a=0; static int b=1; static int c;
+public static void recusionfibonacci(int x) {
+	
+	
+	if(x>0) {
+		c=a+b;
+		a=b;
+		b=c;
+		System.out.print(c+" ");
+		recusionfibonacci(x-1);
+	}
+}
+
+public static void strjoiner() {
+
+	  StringJoiner sj = new StringJoiner(",", "{", "}"); 
+	  StringJoiner sj2 = new StringJoiner("-", "[", "]");
+	  sj.add("t");
+	  sj.add("t"); 
+	  sj2.add("t");
+	  sj2.add("t");
+	  sj2.merge(sj);
+	  System.out.println(sj2);
+}
+public void Iterators() {
+	List<Integer> list= Arrays.asList(10,3,3,9,10,4);
+	List<String> list1 = new ArrayList<>();
+	list1.add("one");
+	list1.add("two");
+	list1.add("three");
+	Iterator<Integer> it = list.iterator();
+	ListIterator<String> i = list1.listIterator();
+	
+	  while (it.hasNext()) System.out.println(it.next());
+	 
+	i.forEachRemaining(e->{ System.out.println(e);});
+	
+	  while(i.hasPrevious()) System.out.println(i.previous());
+	 
+}
 
 
 public static void main(String[] args) {
+
+	List<Integer> list= Arrays.asList(10,3,3,9,10,4);
+
+	List<String> G7 = Arrays.asList("USA", "Japan", "g", "Germany", "Italy", "U.K.","Canada");
+	List<String> list1 = new ArrayList<>();
+	list1.add("one");
+	list1.add("two");
+	list1.add("three");
+	System.out.println( list.stream().sorted().collect(Collectors.toList()));
+	Spliterator<String> i = list1.spliterator();
+	Spliterator<String> it = i.trySplit();
+	System.out.println("i-"+i.estimateSize()+" - i-"+i.getExactSizeIfKnown());
+	i.forEachRemaining(System.out::println);
+	System.out.println("it-"+it.estimateSize()+" - it-"+it.getExactSizeIfKnown());
+	it.forEachRemaining(System.out::println);
+	 
+//	System.out.println(G7.stream().reduce("", (result,e)->result=result+e));
+//	System.out.println(list.stream().filter(e->e>3).collect(Collectors.toList()));
+	String str = "abbgddea";
+	//System.out.print(a+" "+b+" ");
+	//recusionfibonacci(10);
+	/*
+	 * System.out.println( str.chars().mapToObj(e->
+	 * Character.toLowerCase(Character.valueOf((char)e))).collect(Collectors.
+	 * groupingBy(Function.identity() ,LinkedHashMap::new ,Collectors.counting()))
+	 * .entrySet().stream().filter(x->x.getValue()>1).map(x->x.getKey()).findFirst()
+	 * .get());
+	 */
+	 
+// System.out.println(	G7.stream().map(x->x.toUpperCase()).collect(Collectors.joining("-")));
+//	System.out.println(	G7.stream().filter(x->x.equals("")).count());
+//	System.out.println(list.stream().collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting())).values());
 	
-	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+	/*
+	 * DoubleSummaryStatistics iss =
+	 * list.stream().mapToDouble((x)->Double.parseDouble(x+"")).summaryStatistics();
+	 * System.out.println(iss.getMax());
+	 */
+	
+/*	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 	context.register(Aspectconfig.class);
 	context.refresh();
 	
 	Test t = context.getBean(Test.class);
 	t.one();
 	t.two();
-	
+	*/
+/*
+ * ZoneId id = ZoneId.of("Asia/Kolkata"); LocalDateTime ld =
+ * LocalDateTime.now(id); System.out.println(ld);
+ */
+
+ 
 	
 	
 //	new Test().funcInterfaces();

@@ -16,10 +16,13 @@ public class Info implements Serializable {
 		Id = id;
 		this.name = name;
 	}
+	public Info() {
+		super();
+	}
 	@Id
 	@Column(name = "ID")
 	@JsonProperty("Id")
-	private transient int Id;
+	private int Id;
 	@Column(name = "NAME")
 	private String name;
 	public int getId() {

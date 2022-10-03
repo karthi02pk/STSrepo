@@ -5,11 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.Info;
 import com.example.repositories.InfoRepository;
 
 @Service
+@Transactional
 public class InfoServiceImpl implements InfoService {
 	
 	@Autowired
@@ -32,6 +34,7 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void addInfo(Info inf) {
 		repository.save(inf);	
 	}
