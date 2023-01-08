@@ -11,7 +11,8 @@ public class Sample implements FuncInterface {
 		};
 		Fi.add();
 		
-
+	Sample s = new Sample();
+	s.add();
 		
 
 	}

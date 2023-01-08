@@ -6,5 +6,8 @@ public abstract class AbstrctDemo {
 		System.out.println("add");
 	}
 	abstract void sub();
+	static void a() {
+		
+	}
 	
 }

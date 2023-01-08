@@ -15,6 +15,7 @@ import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
@@ -184,6 +185,7 @@ public static void strjoiner() {
 	  System.out.println(sj2);
 }
 public void Iterators() {
+
 	List<Integer> list= Arrays.asList(10,3,3,9,10,4);
 	List<String> list1 = new ArrayList<>();
 	list1.add("one");
@@ -203,8 +205,17 @@ public void Iterators() {
 
 public static void main(String[] args) {
 
+	
 	List<Integer> list= Arrays.asList(10,3,3,9,10,4);
-
+	List<Double> dlist= Arrays.asList(10.0,3.0,3.0,9.0,10.0,4.0);
+	String str = "abbgddea";
+	char a=str.chars().mapToObj(e-> Character.toLowerCase(Character.valueOf((char) e))).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting())).entrySet().stream().filter(e->e.getValue()==1L).findFirst().get().getKey();
+System.out.println(a);
+	//	System.out.println(list.stream().distinct().sorted(Collections.reverseOrder()).collect(Collectors.toList()));
+//	System.out.println(dlist.stream().min(Double::compare).get());
+	//System.out.println(list.stream().max((a,b) -> a>b ? 1:-1).get());
+	System.exit(0);
+	
 	List<String> G7 = Arrays.asList("USA", "Japan", "g", "Germany", "Italy", "U.K.","Canada");
 	List<String> list1 = new ArrayList<>();
 	list1.add("one");
@@ -220,7 +231,7 @@ public static void main(String[] args) {
 	 
 //	System.out.println(G7.stream().reduce("", (result,e)->result=result+e));
 //	System.out.println(list.stream().filter(e->e>3).collect(Collectors.toList()));
-	String str = "abbgddea";
+//	String str = "abbgddea";
 	//System.out.print(a+" "+b+" ");
 	//recusionfibonacci(10);
 	/*

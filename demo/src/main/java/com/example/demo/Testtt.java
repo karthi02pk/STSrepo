@@ -2,21 +2,29 @@ package com.example.demo;
 
 public class Testtt {
 
-	public static void main(String[] args) {
-
-		String input = "G00gle";
-		int result= 0;
-		int element = 0;
-		for(int i = 0;i<input.length();i++) {
-			try {
-				 element= Integer.parseInt(input.charAt(i)+"");
-				result++;
+	public static int test(int [] A , int x) {
+		if(A.length==0)
+			return -1;
+		
+		int l=0;
+		int r=A.length;
+		while(l<r) {
+			int m= (l+r)/2;
+			if(A[m]< x) {
+				r=m-1;
+			}else {
+				l=m;
 			}
-			catch(Exception e) {
+		if(A[l]==x)		
+			return l;
 				
-			}
 		}
-		System.out.println(result);
+		
+		
+		return -1;
+	}
+	public static void main(String[] args) { 
+		System.out.println(test(new int[]{1,8,5,9,10},8));
 	}
 
 }

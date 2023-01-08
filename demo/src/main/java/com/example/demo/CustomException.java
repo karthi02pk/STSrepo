@@ -14,7 +14,7 @@ public class CustomException extends Exception {
 		}
 	
 	public CustomException(String msg,Throwable t) {
-	     super(msg);
+	     super(t);
 		}
 	
 	public static void main(String[] args) throws CustomException {

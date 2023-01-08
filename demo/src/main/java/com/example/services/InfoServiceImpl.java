@@ -1,9 +1,12 @@
 package com.example.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,8 +48,8 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	public ArrayList<Info> getAllInfo() {
-		ArrayList list = new ArrayList();
-		list = (ArrayList) repository.findAll();
+		ArrayList<Info> list = new ArrayList<Info>();
+		list =  (ArrayList<Info>) repository.findAll();
 		return list;
 	}
 }
